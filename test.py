@@ -73,3 +73,12 @@ class TestBooksCollector:
         collector.favorites = initial_favorites.copy()
         collector.delete_book_from_favorites("Несуществующая книга")
         assert collector.favorites == initial_favorites
+
+    def test_get_list_of_favorites_books_returns_all_favorites(self, collector):
+        collector.favorites = ["Книга 1", "Книга 2", "Книга 3"]
+        favorites = collector.get_list_of_favorites_books()
+        assert len(favorites) == 3
+        assert "Книга 1" in favorites
+        assert "Книга 2" in favorites 
+        assert "Книга 3" in favorites
+        assert favorites == ["Книга 1", "Книга 2", "Книга 3"]
